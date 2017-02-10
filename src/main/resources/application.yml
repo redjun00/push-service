@@ -1,0 +1,19 @@
+spring:
+  profiles.active: local-example
+
+---
+spring:
+  profiles: local-example
+  jpa:
+    database: MYSQL
+    hibernate:
+      show_sql: true
+      ddl-auto: validate
+      ejb:
+        naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/example
+    username: root
+    password: root
+---
