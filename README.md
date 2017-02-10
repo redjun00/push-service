@@ -17,3 +17,9 @@ flyway migration을 실행해서 테이블을 만들어 놓는다.
 
 ####요청
 curl -X POST http://localhost:8080/push/123
+
+####DB
+컬럼
+pk id bigint(20) not null auto increment
+device_token bigint(20) not null unique 
+started_at DATETIME not null
