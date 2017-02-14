@@ -41,5 +41,8 @@ dependencies {
 	runtime('mysql:mysql-connector-java')
 	compile group: 'org.projectlombok', name: 'lombok', version: '1.16.12'
 	compile group: 'joda-time', name: 'joda-time', version: '2.9.7'
+	compile 'com.squareup.okhttp3:okhttp:3.2.0'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.6'
+
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

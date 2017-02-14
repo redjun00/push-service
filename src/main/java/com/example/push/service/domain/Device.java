@@ -18,7 +18,7 @@ public class Device {
     private long id;
 
     @NotNull
-    private long deviceToken;
+    private String token;
 
     @NotNull
     private Date startedAt;
