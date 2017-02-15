@@ -26,7 +26,7 @@ started_at DATETIME not null
 
 ####url 요청
 push-service로 push 요청</br>
-curl -X POST http://localhost:8080/push --header "Content-Type:application/json" --data 'hi!!~~~'
+curl -X POST http://localhost:8080/push --header "Content-Type:application/json" --data 'hi!!~~~'</br>
 fcm으로 push 메시지 요청</br>
 curl --header "Content-Type:application/json" \
  --header "Authorization:key=AAAAmSwlYYY:APA91bEQnHqo4fm94ThHXYdOAYODffDQ0YARyjosoYUeUmBI7VFRz1In_2GBlmRFwSM7KRmFtNmzfur4rCv87htNALvvVieiEehdU_X0bNvo-ShHRghi6ghazlgDFJncNo4uYPtUdDUD" \
