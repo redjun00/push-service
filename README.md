@@ -24,6 +24,6 @@ pk id bigint(20) not null auto increment
 device_token bigint(20) not null unique 
 started_at DATETIME not null
 
-###url 요청/b
+###url 요청/n
 push-service로 요청
 curl -X POST http://localhost:8080/push --header "Content-Type:application/json" --data 'hi!!~~~'
