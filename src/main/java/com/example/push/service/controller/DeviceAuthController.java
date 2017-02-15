@@ -53,20 +53,7 @@ public class DeviceAuthController {
         });
     }
 
-    /*
-        https://fcm.googleapis.com/fcm/send
-        Content-Type:application/json
-        Authorization:key=AIzaSyZ-1u...0GBYzPu7Udno5aA
-
-        {
-          "to": "/topics/news",
-          "data": {
-            "message": "hello!"
-           }
-        }
-         */
     public static final String SERVER_KEY = "AAAAmSwlYYY:APA91bEQnHqo4fm94ThHXYdOAYODffDQ0YARyjosoYUeUmBI7VFRz1In_2GBlmRFwSM7KRmFtNmzfur4rCv87htNALvvVieiEehdU_X0bNvo-ShHRghi6ghazlgDFJncNo4uYPtUdDUD";
-    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private void askToSendMessage(Device device, String messageToPush) throws JsonProcessingException {
 
         Map<String, String> message = new HashMap<>();
@@ -109,7 +96,8 @@ public class DeviceAuthController {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                log.info("call=" + call.toString() + ", response=" + response.toString());
+
+                log.info("call={}, response={}, body={}", call, response, response.body().string());
             }
         };
         client.newCall(request).enqueue(callBackAfterRequest);
