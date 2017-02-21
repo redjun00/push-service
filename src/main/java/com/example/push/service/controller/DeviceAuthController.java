@@ -9,10 +9,10 @@ import okhttp3.*;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,20 +25,18 @@ public class DeviceAuthController {
     private DeviceRepo deviceRepo;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public void saveDeviceToken(@RequestBody Device device){
+    public boolean saveDeviceToken(@RequestBody Device device){
+        boolean isSaved = false;
         log.info("try to save device token. device={}", device);
         device.setStartedAt(DateTime.now().toDate());
         log.info("device={}", device.toString());
         try {
             deviceRepo.save(device);
+            isSaved=true;
         }catch (Exception e){
             log.info("already registered device token.");
         }
-    }
-
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public void testGet(){
-        log.info("this is test");
+        return isSaved;
     }
 
     @RequestMapping(value = "/push", method = RequestMethod.POST)
@@ -101,5 +99,33 @@ public class DeviceAuthController {
             }
         };
         client.newCall(request).enqueue(callBackAfterRequest);
+    }
+
+    //jmeter test용
+    /*
+    curl \
+      -F "file=@/home/nrkim/tool/jmeter/temp/json_request.txt" \
+      http://localhost:8080/fileupload
+     */
+    @RequestMapping(value = "/fileupload", method = RequestMethod.POST)
+    public String addFile(@RequestPart MultipartFile file){
+        String originalFileName = file.getOriginalFilename();
+        log.info("this is add file. file name={} file type={}", originalFileName, file.getContentType());
+        log.info("new file path={}", this.getClass().getResource("/").toString());
+
+        String dirPath = System.getProperty("user.dir") + "/build/temporary/";
+        new File(dirPath).mkdir();
+        File destinationDir = new File(dirPath + originalFileName);
+        try {
+            file.transferTo(destinationDir);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return destinationDir.getAbsolutePath();
+    }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public void testGet(){
+        log.info("this is test");
     }
 }
