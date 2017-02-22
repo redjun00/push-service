@@ -16,10 +16,10 @@ intellij에 db를 연결한다.<br/>
 flyway migration을 실행해서 테이블을 만들어 놓는다.
 
 ####요청
-curl -X POST http://localhost:8080/push/123
-curl --header "Content-Type:application/json" --request POST --data '{"token":"123456"}' localhost:8080/register
-curl -X POST localhost:8080/push --header "Content-Type:application/json" --data 'hello~'
-curl -F "file=@/home/nrkim/tool/jmeter/temp/json_request.txt" http://localhost:8080/fileupload
+curl -X POST http://localhost:8080/push/123<br/>
+curl --header "Content-Type:application/json" --request POST --data '{"token":"123456"}' localhost:8080/register<br/>
+curl -X POST localhost:8080/push --header "Content-Type:application/json" --data 'hello~'<br/>
+curl -F "file=@/home/nrkim/tool/jmeter/temp/json_request.txt" http://localhost:8080/fileupload<br/>
 
 ####DB
 컬럼
